@@ -1,18 +1,19 @@
 const mongoose = require("mongoose");
 
-odule.exports = async () => {
+const db = process.env.MONGO_URI;
+
+const connectDB = async () => {
     try {
-        const connectionParams = {
+        await mongoose.connect(db, {
             useNewUrlParser: true,
-            useCreateIndex: true,
             useUnifiedTopology: true,
-        };
-        await mongoose.connect(
-            "mongodb://localhost/todo-app",
-            connectionParams
-        );
-        console.log("Connected to database.");
-    } catch (error) {
-        console.log("Could not connect to database.", error);
+        });
+
+        console.log("MongoDB is connected");
+    } catch (err) {
+        console.error(err.message);
+        process.exit(1);
     }
 };
+
+module.exports = connectDB;
