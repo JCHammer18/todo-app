@@ -10,3 +10,12 @@ router.post("/", async (req, res) => {
         res.send(error);
     }
 });
+
+router.get("/", async (req, res) => {
+    try {
+        const tasks = await Task.find();
+        res.send(tasks);
+    } catch (error) {
+        res.send(error);
+    }
+});
