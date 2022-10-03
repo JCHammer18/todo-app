@@ -1,3 +1,4 @@
+const connection = require("./db");
 const cors = require("cors");
 const express = require("express");
 const app = express();
